@@ -1,21 +1,41 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { AppRegistry, StyleSheet, Text, View } from 'react-native';
+import Splash from './components/Splash.js';
+import Login from './components/Login.js';
+
 
 export default class App extends React.Component {
+  state = {
+    email: '',
+    password: '',
+    isLoginIn: false
+  }
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
+    if (this.state.isLoggedIn)
+      return (
+        <View style={styles.container}>
+          <Splash
+              onLoginPress={() => this.setState({isLoggedIn: false})}
+          />
+        </View>
+      );
+    else
+      return (
+        <View style={styles.container}>
+          <Login
+            onLoginPress={() => this.setState({isLoggedIn: true})}
+          />
+        </View>
+      );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#3498db'
   },
 });
