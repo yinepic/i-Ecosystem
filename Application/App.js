@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppRegistry, StyleSheet, Text, View } from 'react-native';
-import Splash from './components/Splash.js';
+import Main from './components/Main.js';
 import Login from './components/Login.js';
 
 
@@ -8,13 +8,13 @@ export default class App extends React.Component {
   state = {
     email: '',
     password: '',
-    isLoginIn: false
+    isLoginIn: true
   }
   render() {
     if (this.state.isLoggedIn)
       return (
         <View style={styles.container}>
-          <Splash
+          <Main
               onLoginPress={() => this.setState({isLoggedIn: false})}
           />
         </View>
