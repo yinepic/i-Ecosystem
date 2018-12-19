@@ -2,31 +2,50 @@ import React from 'react';
 import { AppRegistry, StyleSheet, Text, View } from 'react-native';
 import Main from './components/Main.js';
 import Login from './components/Login.js';
+import Add from './components/Add.js';
 
 
 export default class App extends React.Component {
   state = {
-    email: '',
+    username: '',
     password: '',
-    isLoginIn: true
+    isLoginIn: true,
+    state: 'Login',
+    devices: ["+"],
   }
   render() {
-    if (this.state.isLoggedIn)
-      return (
-        <View style={styles.container}>
-          <Main
-              onLoginPress={() => this.setState({isLoggedIn: false})}
-          />
-        </View>
-      );
-    else
-      return (
-        <View style={styles.container}>
+    switch(this.state.state) {
+      case 'Login':
+        return (
           <Login
-            onLoginPress={() => this.setState({isLoggedIn: true})}
-          />
-        </View>
-      );
+                onLoginPress={(username) => this.setState({state: 'Main', username})}
+            />
+        );
+      case 'Main':
+        return (
+            <Main
+                onLoginPress={() => this.setState({state: 'Login'})}
+                onAddPress={() => this.setState({state: 'Add'})}
+                username={this.state.username}
+                devices={this.state.devices}
+            />
+        );
+      case 'Add':
+        return (
+            <Add
+                onLoginPress={() => this.setState({state: 'Main'})}
+                updateDevices={(devices) => this.setState(devices)}
+                username={this.state.username}
+                devices={this.state.devices}
+            />
+        );
+      default:
+        return (
+          <View style={styles.container}>
+            <Text> Unknow State </Text>
+          </View>
+        );
+    }
   }
 }
 

@@ -9,7 +9,7 @@ export default class Login extends React.Component {
     }
     _userLogin = () => {
       if (this.state.username == "admin" && this.state.password == "1234") {
-        this.props.onLoginPress()
+        this.props.onLoginPress(this.state.username)
       }
     }
     render() {
@@ -46,7 +46,11 @@ export default class Login extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#3498db'
   },
   input: {
     height: 40, width: 200,

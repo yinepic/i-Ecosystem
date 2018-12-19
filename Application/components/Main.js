@@ -1,15 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View, ListView, Image, TouchableOpacity } from 'react-native';
+import App from '../App.js'
 
 export default class Main extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-            datas: ["+"],
-            dataSource: []
+            dataSource: ds.cloneWithRows(this.props.devices)
         };
-        this.state.dataSource = ds.cloneWithRows(this.state.datas);
+        // this.state.dataSource = ds.cloneWithRows(this.props.devices);
     }
 
     render() {
@@ -42,28 +42,34 @@ export default class Main extends React.Component {
 
     _pressRow = (rowData) => {
         if (rowData == "+") {
-            var lengthData = this.state.datas.length;
-            const datas = this.state.datas;
-            datas.pop();
-            datas.push("device " + lengthData);
-            datas.push("+");
-            this.setState({
-                datas: datas
-            });
-            const ds = new ListView.DataSource({
-                rowHasChanged: (r1, r2) => r1 !== r2
-            });
+          this.props.onAddPress()
+            // var lengthData = this.state.datas.length;
+            // const datas = this.state.datas;
+            // datas.pop();
+            // datas.push("device " + lengthData);
+            // datas.push("+");
+            // this.setState({
+            //     datas: datas
+            // });
+            // const ds = new ListView.DataSource({
+            //     rowHasChanged: (r1, r2) => r1 !== r2
+            // });
             
-            this.setState({
-                dataSource: ds.cloneWithRows(this.state.datas)
-            });
+            // this.setState({
+            //     dataSource: ds.cloneWithRows(this.state.datas)
+            // });
         }
       }
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
+    padding: 20,
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#3498db'
   },
   list: {
     justifyContent: 'center',
