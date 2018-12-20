@@ -1,18 +1,26 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
+  "name": "OktaRN",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "eject": "expo eject"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
   },
   "dependencies": {
-    "expo": "^31.0.2",
+    "@babel/runtime": "^7.0.0",
+    "buffer": "^5.2.1",
     "react": "16.5.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz"
+    "react-native": "0.57.1",
+    "react-native-app-auth": "^3.1.0",
+    "styled-components": "^3.4.9"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0"
+    "babel-jest": "23.6.0",
+    "jest": "23.6.0",
+    "metro-react-native-babel-preset": "0.47.0",
+    "react-test-renderer": "16.5.0"
   },
-  "private": true
+  "jest": {
+    "preset": "react-native"
+  }
 }
