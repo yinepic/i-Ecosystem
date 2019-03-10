@@ -57,25 +57,32 @@ export default class Add extends React.Component {
                 value={this.state.name}
               />
             <TouchableOpacity
-              style={styles.button}
-              activeOpacity={this.state.lastScannedUrl == null ? 1 : 0.7}
+              style={this.state.lastScannedUrl == null ? styles.button_disable : styles.button}
+              // activeOpacity={this.state.lastScannedUrl == null ? 1 : 0.7}
               disabled={this.state.lastScannedUrl == null ? true : false}
               onPress={this._addDeivice}
             >
               <Text style={styles.text}> OK </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              // activeOpacity={this.state.lastScannedUrl == null ? 1 : 0.7}
+              onPress={this.props.onCancelPress}
+            >
+              <Text style={styles.text}> Cancel </Text>
             </TouchableOpacity>
             </View>
         )
     }
 
     _addDeivice = () => {
-        var length = this.props.devices.length;
-        const devices = this.props.devices;
-        devices.pop();
-        devices.push(this.state.name);
-        devices.push("+");
-        this.props.updateDevices(devices)
-        this.props.onLoginPress()
+        // var length = this.props.devices.length;
+        // const devices = this.props.devices;
+        // devices.pop();
+        // devices.push(this.state.name);
+        // devices.push("+");
+        // this.props.updateDevices(devices)
+        this.props.onOKPress()
    }
 }
 
@@ -95,6 +102,12 @@ const styles = StyleSheet.create({
     color: '#FFF',
     paddingHorizontal: 10,
     textAlign: 'center'
+  },
+  button_disable: {
+    backgroundColor: '#eaf4fa',
+    marginTop: 20,
+    paddingVertical: 10,
+    width: 100
   },
   button: {
     backgroundColor: '#2980b9',

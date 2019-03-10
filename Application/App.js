@@ -3,6 +3,7 @@ import { AppRegistry, StyleSheet, Text, View } from 'react-native';
 import Main from './components/Main.js';
 import Login from './components/Login.js';
 import Add from './components/Add.js';
+import SmartConfig  from './SmartConfig.js';
 
 
 export default class App extends React.Component {
@@ -33,7 +34,17 @@ export default class App extends React.Component {
       case 'Add':
         return (
             <Add
-                onLoginPress={() => this.setState({state: 'Main'})}
+                onCancelPress={() => this.setState({state: 'Main'})}
+                onOKPress={() => this.setState({state: 'SmartConfig'})}
+                updateDevices={(devices) => this.setState(devices)}
+                username={this.state.username}
+                devices={this.state.devices}
+            />
+        );
+      case 'SmartConfig':
+        return (
+            <SmartConfig
+                onPress={() => this.setState({state: 'Add'})}
                 updateDevices={(devices) => this.setState(devices)}
                 username={this.state.username}
                 devices={this.state.devices}
